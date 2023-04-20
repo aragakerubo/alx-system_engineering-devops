@@ -18,4 +18,7 @@ Create a script that counts the number of directories in the `PATH`.
 ### 4. Global variables
 Create a script that lists environment variables.
 
+### 5. Local variables
+Create a script that lists all local variables and environment variables, and functions.
+
 
