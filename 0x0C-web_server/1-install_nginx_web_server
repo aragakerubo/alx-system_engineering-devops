@@ -2,8 +2,12 @@
 # Script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself)
 
 # Install Nginx
-apt-get update
+apt-get -y update
 apt-get -y install nginx
+
+# Set up index page
+touch /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 
 # Configure Nginx
 echo "server {
