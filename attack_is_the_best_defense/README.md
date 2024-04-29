@@ -42,7 +42,7 @@ DevOpsScriptingHacking
 
 Score: 0.0% (Checks completed: 0.0%)
 
-![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/01c5a1e3f29d290b188d34be5cf534d3255058a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240429T154905Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=fa0d2ee6a3f684c24b5853d10f57ecf767f74958ce69844a09941cf5746eb87a)
+![image](https://github.com/aragakerubo/alx-system_engineering-devops/assets/48017280/003ecf24-a5c3-4ae1-a566-dfe9cfe57edd)
 
 Security is a vast topic, and network security is an important part of it. A lot of very sensitive information goes over networks that are used by many people, and some people might have bad intentions. Traffic going through a network can be intercepted by a malicious machine pretending to be another network device. Once the traffic is redirected to the malicious machine, the hacker can keep a copy of it and analyze it for potential interesting information. It is important to note that the traffic must then be forwarded to the actual device it was supposed to go (so that users and the system keep going as if nothing happened).
 
