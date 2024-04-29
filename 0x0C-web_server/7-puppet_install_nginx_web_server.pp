@@ -20,12 +20,12 @@ file { 'index.nginx-debian.html':
 
 # Update the default configuration
 exec { 'update_nginx_config':
-    command => 'sed -i "s|root /var/www/html;|root /var/www/html;\\n\\n    location / {\\n        return 301 /index.nginx-debian.html;\\n    }|g" /etc/nginx/sites-available/default',
-    provider => shell,
+  command => 'sed -i "s|root /var/www/html;|root /var/www/html;\\n\\n    location / {\\n        return 301 /index.nginx-debian.html;\\n    }|g" /etc/nginx/sites-available/default',
+  provider => shell,
 }
 
 # Restart nginx
 exec { 'restart_nginx':
-    command => 'systemctl restart nginx',
-    provider => shell,
+  command => 'systemctl restart nginx',
+  provider => shell,
 }
