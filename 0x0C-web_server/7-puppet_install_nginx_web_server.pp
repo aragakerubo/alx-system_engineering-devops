@@ -8,24 +8,23 @@
 
 # Install nginx
 package { 'nginx':
-  ensure => installed,
+  ensure => 'installed',
 }
 
 # Create a new file
 file { 'index.nginx-debian.html':
   path    => '/var/www/html/index.nginx-debian.html',
-  ensure  => file,
   content => "Hello World!",
 }
 
 # Update the default configuration
 exec { 'update_nginx_config':
-  command => 'sed -i "s|root /var/www/html;|root /var/www/html;\\n\\n    location / {\\n        return 301 /index.nginx-debian.html;\\n    }|g" /etc/nginx/sites-available/default',
-  provider => shell,
+  command => 'sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com/watch?v=TfgBHC5gvTI permanent;/" /etc/nginx/sites-available/default',
+  provider => 'shell',
 }
 
 # Restart nginx
 exec { 'restart_nginx':
-  command => 'systemctl restart nginx',
-  provider => shell,
+  command => 'sudo service restart nginx',
+  provider => 'shell',
 }
