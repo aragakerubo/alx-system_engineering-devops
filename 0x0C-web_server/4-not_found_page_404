@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Configure your Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page.
+
+# Requirements:
+
+# The page must return an HTTP 404 error code
+# The page must contain the string Ceci n'est pas une page
+# Using what you did with 3-redirection, write 4-not_found_page_404 so that it configures a brand new Ubuntu machine to the requirements asked in this task
+
+
+# Install Nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+# Create the default index.html and 404.html pages
+sudo touch /var/www/html/index.html /var/www/html/404.html /etc/nginx/sites-available/default
+
+# Update the index.html and 404.html pages
+sudo chmod 777 /var/www/html/index.html /var/www/html/404.html /etc/nginx/sites-available/default
+echo "Hello World!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Update the Nginx configuration file
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   root   /var/www/html/;
+    index  index.html index.htm;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=TfgBHC5gvTI;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html/;
+        internal;
+    }
+}" > /etc/nginx/sites-available/default
+
+# Restart Nginx
+sudo service nginx restart
