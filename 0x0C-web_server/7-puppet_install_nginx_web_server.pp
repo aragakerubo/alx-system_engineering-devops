@@ -1,19 +1,36 @@
-# installs and configs nginx server
-
+# Install Nginx package
 package { 'nginx':
-  ensure => 'installed',
+  ensure => installed,
 }
 
-file { 'index.nginx-debian.html':
-  path    => '/var/www/html/index.nginx-debian.html',
-  content => 'Hello World!',
+# Configure Nginx
+file { '/etc/nginx/sites-available/default':
+  ensure  => file,
+  content => "server {
+                listen 80;
+                server_name _;
+
+                location / {
+                  return 200 'Hello World!';
+                }
+
+                location /redirect_me {
+                  return 301 'https://www.youtube.com/watch?v=QH2-TGUlwu4';
+                }
+              }",
 }
 
-exec { 'config':
-  command  => 'sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com/watch?v=TfgBHC5gvTI permanent;/" /etc/nginx/sites-available/default',
-  provider => 'shell',
+# Enable the default site
+file { '/etc/nginx/sites-enabled/default':
+  ensure => link,
+  target => '/etc/nginx/sites-available/default',
+  require => File['/etc/nginx/sites-available/default'],
 }
-exec { 'start':
-  command  => 'sudo service nginx restart',
-  provider => 'shell',
+
+# Restart Nginx service
+service { 'nginx':
+  ensure    => running,
+  enable    => true,
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
+
