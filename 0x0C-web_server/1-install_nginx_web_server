@@ -21,17 +21,14 @@ echo "Hello World!" > /var/www/html/index.html
 sudo touch /etc/nginx/sites-available/default
 
 # Add the following content to the file
-echo "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-    server_name _;
-    location / {
-        add_header X-Served-By $HOSTNAME;
-        echo Hello World!;
-    }
-}" > /etc/nginx/sites-available/default
+printf %s "server {
+    listen		80 default_server;
+    listen		[::]:80 default_server;
+
+    root		/var/www/html;
+    index		index.html index.htm index.nginx-debian.html;
+}
+" > /etc/nginx/sites-available/default
 
 # Restart nginx
 sudo service nginx restart
