@@ -8,47 +8,24 @@
 
 # Install nginx
 package { 'nginx':
-  ensure => present,
+  ensure => installed,
 }
 
 # Create a new file
-file { '/etc/nginx/sites-available/default':
+file { 'index.nginx-debian.html':
+  path    => '/var/www/html/index.nginx-debian.html',
   ensure  => file,
-  content => 'server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /var/www/html/;
-    index  index.html index.htm;
+  content => "Hello World!",
+}
 
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-
-    error_page 404 /404.html;
-    location /404 {
-        root /var/www/html/;
-        internal;
-    }
-}',
+# Update the default configuration
+exec { 'update_nginx_config':
+    command => 'sed -i "s|root /var/www/html;|root /var/www/html;\\n\\n    location / {\\n        return 301 /index.nginx-debian.html;\\n    }|g" /etc/nginx/sites-available/default',
+    provider => shell,
 }
 
 # Restart nginx
-service { 'nginx':
-  ensure    => running,
-  enable    => true,
-  subscribe => File['/etc/nginx/sites-available/default'],
+exec { 'restart_nginx':
+    command => 'systemctl restart nginx',
+    provider => shell,
 }
-
-# Create a new file
-file { '/var/www/html/index.html':
-  ensure  => file,
-  content => 'Hello World!',
-}
-
-# Restart nginx
-service { 'nginx':
-  ensure    => running,
-  enable    => true,
-  subscribe => File['/var/www/html/index.html'],
-}
-
