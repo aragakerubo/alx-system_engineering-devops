@@ -1,0 +1,40 @@
+# File: 0-custom_http_response_header.pp
+file { '/etc/nginx/sites-available/default':
+  ensure  => file,
+  content => "# This file is managed by Puppet
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+
+    add_header X-Served-By \$hostname; # Custom header
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}
+",
+}
+
+file { '/etc/nginx/sites-enabled/default':
+  ensure  => 'link',
+  target  => '/etc/nginx/sites-available/default',
+  require => File['/etc/nginx/sites-available/default'],
+}
+
+service { 'nginx':
+  ensure  => 'running',
+  enable  => true,
+  require => File['/etc/nginx/sites-enabled/default'],
+}
+
