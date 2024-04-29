@@ -16,8 +16,8 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 
 # Create a page that contains the string Hello World!
-touch /var/www/html/index.html
-echo "Hello World!" > /var/www/html/index.html
+sudo touch /var/www/html/index.html
+sudo echo "Hello World!" > /var/www/html/index.html
 
 # Write the configuration
 printf %s "server {
