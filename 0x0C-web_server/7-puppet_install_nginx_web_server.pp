@@ -18,13 +18,13 @@ file { 'index.nginx-debian.html':
 }
 
 # Update the default configuration
-exec { 'update_nginx_config':
-  command => 'sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com/watch?v=TfgBHC5gvTI permanent;/" /etc/nginx/sites-available/default',
+exec { 'config':
+  command => 'sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com/watch?v=QH2-TGUlwu4 permanent;/" /etc/nginx/sites-available/default',
   provider => 'shell',
 }
 
 # Restart nginx
-exec { 'restart_nginx':
+exec { 'start':
   command => 'sudo service restart nginx',
   provider => 'shell',
 }
