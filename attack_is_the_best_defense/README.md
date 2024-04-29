@@ -3,9 +3,15 @@
 DevOpsScriptingHacking
 
 *   Weight: 1
-*   Project will start Apr 14, 2024 11:00 PM, must end by Apr 28, 2024 11:00 PM
-*   Checker was released at Apr 18, 2024 11:00 AM
+*   Project over - took place from Apr 14, 2024 11:00 PM to Apr 28, 2024 11:00 PM
 *   An auto review will be launched at the deadline
+
+#### In a nutshell…
+
+*   **Auto QA review:** 0.0/0 mandatory & 0.0/4 optional
+*   **Altogether:**  **0.0%**
+    *   Mandatory: no mandatory tasks
+    *   Optional: 0.0%
 
 ## Background Context
 
@@ -34,7 +40,9 @@ DevOpsScriptingHacking
 
 #advanced
 
-![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/01c5a1e3f29d290b188d34be5cf534d3255058a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240428%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240428T061134Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=fa1ac9d264ee8986c2961daceaa40bf8fb0f65b5fbb7d27f950b0342b6fc4a1a)
+Score: 0.0% (Checks completed: 0.0%)
+
+![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/01c5a1e3f29d290b188d34be5cf534d3255058a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240429T154905Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=fa0d2ee6a3f684c24b5853d10f57ecf767f74958ce69844a09941cf5746eb87a)
 
 Security is a vast topic, and network security is an important part of it. A lot of very sensitive information goes over networks that are used by many people, and some people might have bad intentions. Traffic going through a network can be intercepted by a malicious machine pretending to be another network device. Once the traffic is redirected to the malicious machine, the hacker can keep a copy of it and analyze it for potential interesting information. It is important to note that the traffic must then be forwarded to the actual device it was supposed to go (so that users and the system keep going as if nothing happened).
 
@@ -122,11 +130,26 @@ Text answer fail
 
 Skipped - Previous check failed
 
-Get a sandbox
+Ask for a new correction : in progress... : an error occurred Get a sandbox QA Review
+
+×
+
+#### 0\. ARP spoofing and sniffing unencrypted traffic
+
+##### Commit used:
+
+*   **User:** \---
+*   **URL:** Click here
+*   **ID:** `---`
+*   **Author:** \---
+*   **Subject:** _\---_
+*   **Date:** \---
 
 ### 1\. Dictionary attack
 
 #advanced
+
+Score: 0.0% (Checks completed: 0.0%)
 
 Password-based authentication systems can be easily broken by using a dictionary attack (you’ll have to find your own password dictionary). Let’s try it on an SSH account.
 
@@ -146,3 +169,29 @@ Once you found the password, share it in your answer file.
 *   File: `1-dictionary_attack`
 
 Done?! Check your code
+
+×
+
+#### Correction of "1. Dictionary attack"
+
+Start a new test Close
+
+Requirement success
+
+Requirement fail
+
+Code success
+
+Code fail
+
+Efficiency success
+
+Efficiency fail
+
+Text answer success
+
+Text answer fail
+
+Skipped - Previous check failed
+
+Ask for a new correction : in progress... : an error occurred Get a sandbox
