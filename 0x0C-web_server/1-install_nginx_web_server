@@ -13,6 +13,10 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
+# Create a page that contains the string Hello World!
+touch /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
+
 # Create a new file in /etc/nginx/sites-available/
 sudo touch /etc/nginx/sites-available/default
 
