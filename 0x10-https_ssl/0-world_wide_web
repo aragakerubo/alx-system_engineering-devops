@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Your Bash script must accept 2 arguments:
+# domain:
+# type: string
+# what: domain name to audit
+# mandatory: yes
+# subdomain:
+# type: string
+# what: specific subdomain to audit
+# mandatory: no
+# Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+
+# Function to get the record type and destination
+get_record() {
+    record_type=$(dig $1 $2 | awk '/^'$3'/ {print $4}')
+    destination=$(dig $1 $2 | awk '/^'$3'/ {print $5}')
+    echo "The subdomain $2 is a $record_type record and points to $destination"
+}
+
+# If there are no subdomains
+if [ -z $2 ]; then
+    get_record $1 www A
+    get_record $1 lb-01 A
+    get_record $1 web-01 A
+    get_record $1 web-02 A
+else
+    get_record $1 $2 A
+fi
+
