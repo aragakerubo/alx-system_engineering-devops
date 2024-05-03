@@ -10,20 +10,36 @@
 # mandatory: no
 # Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
 
-# Function to get the record type and destination
-get_record() {
-    record_type=$(dig $1 $2 | awk '/^'$3'/ {print $4}')
-    destination=$(dig $1 $2 | awk '/^'$3'/ {print $5}')
-    echo "The subdomain $2 is a $record_type record and points to $destination"
+# Function to fetch DNS records for a domain and subdomain
+fetch_dns_records() {
+    domain=$1
+    subdomain=$2
+
+    if [ -z "$subdomain" ]; then
+        subdomains=("www" "lb-01" "web-01" "web-02")
+    else
+        subdomains=("$subdomain")
+    fi
+
+    for sub in "${subdomains[@]}"; do
+        record=$(dig +nocmd "$sub.$domain" +noall +answer | awk 'NR==1{print $4}')
+        if [ -n "$record" ]; then
+            ip=$(dig +nocmd "$sub.$domain" +noall +answer | awk 'NR==1{print $5}')
+            echo "The subdomain $sub is a $record record and points to $ip"
+        else
+            echo "No record found for subdomain $sub"
+        fi
+    done
 }
 
-# If there are no subdomains
-if [ -z $2 ]; then
-    get_record $1 www A
-    get_record $1 lb-01 A
-    get_record $1 web-01 A
-    get_record $1 web-02 A
-else
-    get_record $1 $2 A
+# Main script
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <domain> [<subdomain>]"
+    exit 1
 fi
+
+domain=$1
+subdomain=$2
+
+fetch_dns_records "$domain" "$subdomain"
 
