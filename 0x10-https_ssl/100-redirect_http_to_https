@@ -1,0 +1,25 @@
+# Global section
+global
+    maxconn 4000
+    user haproxy
+    group haproxy
+
+# Defaults frontend
+defaults
+    mode http
+    balance roundrobin
+    option http-server-close
+    timeout connect 5s
+    timeout client 5s
+    timeout server 5s
+
+frontend lb-01
+    bind *:80
+    bind *:443 ssl crt /etc/haproxy/cert/aragakerubo.tech.pem
+    http-request redirect scheme https code 301 unless { ssl_fc }
+    default_backend webservers
+
+backend webservers
+    server 404031-web-01 34.232.69.100:80 check
+    server 404031-web-02 100.26.173.88:80 check
+
