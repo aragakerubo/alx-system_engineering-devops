@@ -1,0 +1,13 @@
+#!/bin/bash
+# Install and configure UFW (Uncomplicated Firewall)
+sudo apt update -y
+sudo apt install ufw -y
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw reload
+sudo ufw status
+
