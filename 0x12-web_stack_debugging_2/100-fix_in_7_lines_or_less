@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# Run nginx as user
 sudo sed -i 's/user\s*nginx;/user nginx nginx;/g' /etc/nginx/nginx.conf
 sudo sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
 sudo nginx -s reload
