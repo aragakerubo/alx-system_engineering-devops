@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# Bash script that configures a server to the below requirements
-# Nginx must be running, and listening on port 80 of all the server’s active IPv4 IPs
-sed -i 's/\/etc\/nginx\/sites-enabled\/\*/\/etc\/nginx\/sites-enabled\/default/g' /etc/nginx/nginx.conf
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-service nginx start
-exit 2
+# Bash Script that sets Nginx to listen on port 80 of all the server’s active IPv4 IPs
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
