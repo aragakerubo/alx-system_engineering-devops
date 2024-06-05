@@ -19,6 +19,3 @@ def number_of_subscribers(subreddit):
             return 0
     except requests.RequestException:
         return 0
-
-print(number_of_subscribers('python'))  # Should return the number of subscribers for the 'python' subreddit
-print(number_of_subscribers('thissubredditdoesnotexist'))  # Should return 0 for an invalid subreddit
