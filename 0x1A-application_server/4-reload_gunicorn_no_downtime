@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get the PID of the Gunicorn master process
+GUNICORN_PID=$(ps aux | grep 'gunicorn' | grep 'web_dynamic.2-hbnb:app' | grep -v 'grep' | awk '{print $2}')
+
+# Send SIGHUP signal to the Gunicorn master process to reload the configuration and application code
+if [ -n "$GUNICORN_PID" ]; then
+  kill -HUP $GUNICORN_PID
+  echo "Gunicorn master process $GUNICORN_PID reloaded successfully."
+else
+  echo "Gunicorn master process not found."
+fi
